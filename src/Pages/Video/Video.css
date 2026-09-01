@@ -9,6 +9,32 @@
     flex-wrap: wrap;
 }
 
+.play-container.theater {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.play-container.theater .play-video {
+    flex-basis: 100%;
+    width: 100%;
+}
+
+.play-container.theater .play-video h3,
+.play-container.theater .play-video-info,
+.play-container.theater .publisher,
+.play-container.theater .vid-description,
+.play-container.theater hr,
+.play-container.theater .theater-btn {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.play-container.theater .recommended {
+    flex-basis: 100%;
+    padding: 20px 2%;
+}
+
 @media (max-width: 900px) {
     .play-container {
         padding-left: 5%;

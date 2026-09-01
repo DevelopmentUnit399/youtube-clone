@@ -11,7 +11,7 @@ import { API_KEY, value_converter } from '../../data'
 import moment from 'moment'
 import { useParams } from 'react-router-dom'
 
-const PlayVideo = () => {
+const PlayVideo = ({ theaterMode, setTheaterMode }) => {
 
     const { videoId } = useParams()
 
@@ -48,12 +48,22 @@ const PlayVideo = () => {
 
     return (
         <div className='play-video'>
-            <iframe src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen>
-            </iframe>
+            <div className="iframe-wrapper">
+                <iframe src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <button
+                className="theater-btn"
+                onClick={() => setTheaterMode(prev => !prev)}
+            >
+                {theaterMode ? 'Default View' : 'Theater Mode'}
+            </button>
+
             <h3>{apiData ? apiData.snippet.title : "Title Here"}</h3>
             <div className="play-video-info">
                 <p>{apiData ? value_converter(apiData.statistics.viewCount) : "16K"} Views &bull; {apiData ? moment(apiData.snippet.publishedAt).fromNow() : ""}</p>
