@@ -9,6 +9,24 @@ const Video = () => {
     const { categoryId } = useParams()
     
     useEffect(() => {
+        const handleKeyDown = (e) => {
+            const activeTag = document.activeElement.tagName.toLowerCase()
+            const isEditable = document.activeElement.isContentEditable
+            if (activeTag === 'input' || activeTag === 'textarea' || isEditable) {
+                return
+            }
+
+            if (e.key === 't' || e.key === 'T') {
+                e.preventDefault()
+                setTheaterMode((prev) => !prev)
+            }
+        }   
+
+        window.addEventListener('keydown', handleKeyDown)
+        return () => window.removeEventListener('keydown', handleKeyDown)
+    }, [])
+
+    useEffect(() => {
         window.scrollTo({
             top: 0,
             left: 0,
